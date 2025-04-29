@@ -7,7 +7,6 @@
     "build": "tsc -b",
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts"
-}
   },
   "keywords": [],
   "author": "",

@@ -1,0 +1,24 @@
+# node modules
+node_modules/
+
+# build files
+dist/
+build/
+
+# environment files
+.env
+
+# system files
+.DS_Store
+Thumbs.db
+
+# log files
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# dependencies lock files (optional)
+package-lock.json
+yarn.lock

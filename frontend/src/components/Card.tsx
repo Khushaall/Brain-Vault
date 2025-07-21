@@ -9,10 +9,10 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 
 interface CardProps {
-    title: string;
-    link: string;
-    type: "youtube" | "tweet" | "document";
-    onDelete: () => void
+    title?: string;
+    link?: string;
+    type?: "youtube" | "tweet" | "document";
+    onDelete?: () => void
 }
 
 export default function Card(props: CardProps) {

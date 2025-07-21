@@ -1,40 +1,36 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
-// mongoose.connect("mongodb://127.0.0.1:27017/brainly").then(
-//    ()=>{
-//     console.log("Mongo Connected")
-//    }
-// )
+mongoose.connect(process.env.MONGO_URI!)
+  .then(() => {
+    console.log("✅ MongoDB Connected");
+  })
+  .catch((err) => {
+    console.error("❌ MongoDB Connection Failed:", err.message);
+  });
 
-
-mongoose.connect("mongodb+srv://khushalsharma122:khushalsharma122@cluster0.nbr3on6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0").then(
-    ()=>{
-     console.log("Mongo Connected")
-    }
- )
-
-
+// User Schema
 const UserSchema = new mongoose.Schema({
-    username:{type:String, required:true ,unique:true},
-    password:{type : String,required:true},
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 });
 
+// Content Schema
 const ContentSchema = new mongoose.Schema({
+  title: String,
+  link: String,
+  tag: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+});
 
-    title:String,
-    link:String,
-    tag:String,
-    userId : {type: mongoose.Schema.Types.ObjectId , ref:"User", required:true}
-
-})
-
+// Link Schema
 const LinkSchema = new mongoose.Schema({
-    hash: String,
-    userId : {type: mongoose.Schema.Types.ObjectId , ref:"User", required:true}
-})
+  hash: String,
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+});
 
-export const LinkModel = mongoose.model("Links" , LinkSchema);
-export const ContentModel = mongoose.model("Content",ContentSchema); 
-
-export const UserModel = mongoose.model("User",UserSchema);
-
+// Models
+export const UserModel = mongoose.model("User", UserSchema);
+export const ContentModel = mongoose.model("Content", ContentSchema);
+export const LinkModel = mongoose.model("Links", LinkSchema);

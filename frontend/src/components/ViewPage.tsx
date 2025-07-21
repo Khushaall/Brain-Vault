@@ -72,7 +72,7 @@ export default function ViewPage() {
         ) : (
 
           <div className='text-gray-500 flex justify-center mt-8 items-center text-2xl'>
-            No content found for {'All'}
+            No links Stored for Now...
           </div>
 
         )}

@@ -49,14 +49,15 @@ app.post("/api/v1/signup", async (req, res) => {
 
     )
 
-    const result = format.safeParse(req.body)
+    const result = format.safeParse(req.body);
 
     if (!result.success) {
-        res.status(411).json({
-            message: "wrong Format"
-        });
-        return;
-    }
+    const errorMsg = result.error.errors[0]?.message || "Invalid input";
+    res.status(411).json({
+        message: errorMsg
+    });
+    return;
+}
 
     const chck = await UserModel.findOne({ username });
 
@@ -97,7 +98,7 @@ app.post("/api/v1/signin", async (req, res) => {
 
     if (!chck) {
         res.status(403).json({
-            message: "Not A User"
+            message: "Not A User!! Sign up "
         });
         return;
     }
@@ -196,20 +197,20 @@ app.get("/api/v1/content", auth, async (req, res) => {
 
 app.delete("/api/v1/content/:id", auth, async (req, res) => {
 
-    const {id}=req.params;
+    const { id } = req.params;
     try {
         await ContentModel.deleteOne({
-            _id:id,
+            _id: id,
 
             //@ts-ignore
             userId: req.userId,
-            
+
 
         })
         console.log(id)
         res.status(200).json({
             message: "Deleted"
-            
+
         })
 
 

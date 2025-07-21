@@ -12,7 +12,7 @@ export default function BrainIcon(props: React.SVGProps<SVGSVGElement>) {
       width="491.255px"
       height="491.256px"
       viewBox="0 0 491.255 491.256"
-      style={{ enableBackground: "new 0 0 491.255 491.256" }}
+      enableBackground="new 0 0 491.255 491.256"
       xmlSpace="preserve"
       {...props}
     >

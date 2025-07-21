@@ -8,55 +8,59 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 
-
+type ContentItem = {
+  title: string;
+  tag: string;
+  link: string;
+};
 
 export default function ViewPage() {
 
-  const [content,setContent] = useState();
-  const[username,setUsername] = useState();
-  const [loading,setLoading]=useState(false);
-  const { link } = useParams(); 
+  const [content, setContent] = useState<ContentItem[]>([]);
+  const [username, setUsername] = useState<string>("");
+  const [loading, setLoading] = useState(false);
+  const { link } = useParams();
 
 
   const navigate = useNavigate();
 
   useEffect(() => {
-      async function fetchData() {
-        setLoading(true);
-          try {
-              const res = await axios.get(`${BACKEND_URL}/brain/${link}`, {
-                  withCredentials: true
-              });
+    async function fetchData() {
+      setLoading(true);
+      try {
+        const res = await axios.get(`${BACKEND_URL}/brain/${link}`, {
+          withCredentials: true
+        });
 
-              setContent(res.data.content);
-              setUsername(res.data.username);
+        setContent(res.data.content);
+        setUsername(res.data.username);
 
-              setLoading(false);
+        setLoading(false);
 
-          } catch (err) {
-              alert("No such Page");
-          }
+      } catch (err) {
+        alert("No such Page");
       }
+    }
 
-      fetchData();
+    fetchData();
   }, []);
 
-  function handleSubmit(){
+  function handleSubmit() {
     navigate("/")
   }
 
 
-  const filteredContents =  content;
+  const filteredContents = content;
   return (
     <div className="bg-[#eeeeef] w-screen min-h-screen">
-       <div className="flex p-8 pl-12 pr-12 justify-between">
-         <div> <h1 className="lg:text-2xl md:text-xl  sm:text-md text-2xl font-semibold tracking-wide text-gray-700   text-center " >
-            {username}'s Dashboard
-          </h1></div>
-          <div>
-            <Button type="primary" onClick={handleSubmit} size="lg" text="Log in to WebSite"/>
-          </div>
+      <div className="flex p-8 pl-12 pr-12 justify-between">
+        <div> <h1 className="lg:text-2xl md:text-xl  sm:text-md text-2xl font-semibold tracking-wide text-gray-700   text-center " >
+          {username}'s Dashboard
+        </h1></div>
+        <div>
+          <Button type="primary" onClick={handleSubmit} size="lg" text="Log in to WebSite" />
         </div>
+      </div>
 
       <div className="flex justify-center gap-2 p-2  ml-4 flex-wrap">
 
@@ -67,7 +71,7 @@ export default function ViewPage() {
             .map((_, index) => <SkeletonCard key={index} />)
         ) : filteredContents?.length > 0 ? (
           filteredContents?.map(({ title, tag, link }) => (
-            <Card type={tag} link={link} title={title} />
+            <Card key={link} type={tag as "youtube" | "tweet" | "document"} link={link} title={title} />
           ))
         ) : (
 

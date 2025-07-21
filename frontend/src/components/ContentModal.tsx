@@ -7,7 +7,7 @@ import { BACKEND_URL } from "../config"
 
 interface ModalProps {
     Open: boolean,
-    refresh:()=> void,
+    refresh: () => void,
     onClose: () => void
 }
 interface InputProps {
@@ -23,9 +23,11 @@ function Input({ placeholder, ref }: InputProps) {
 }
 
 export default function ContentModal({ onClose, Open, refresh }: ModalProps) {
-    const TagRef = useRef<HTMLInputElement>();
-    const TitelRef = useRef<HTMLInputElement>();
-    const LinkRef = useRef<HTMLInputElement>();
+    const TagRef = useRef<HTMLInputElement>(null);
+    const TitelRef = useRef<HTMLInputElement>(null);
+    const LinkRef = useRef<HTMLInputElement>(null);
+    const SelectRef = useRef<HTMLSelectElement>(null);
+
 
 
 
@@ -46,9 +48,9 @@ export default function ContentModal({ onClose, Open, refresh }: ModalProps) {
             if (res.status === 200) {
                 refresh();
                 onClose();
-                
 
-                
+
+
             }
             else if (res.status === 400) {
                 alert("All Fields Required");
@@ -78,7 +80,7 @@ export default function ContentModal({ onClose, Open, refresh }: ModalProps) {
                 </div>
                 <Input ref={TitelRef} placeholder="Title" />
                 <Input ref={LinkRef} placeholder="Link" />
-                <select name="Tag" ref={TagRef} className="border-gray-300 border-2 rounded p-2 ">
+                <select name="Tag" ref={SelectRef} className="border-gray-300 border-2 rounded p-2 ">
                     <option value="youtube">Youtube</option>
                     <option value="tweet">Twitter</option>
                     <option value="document">Git Hub</option>

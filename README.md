@@ -20,7 +20,7 @@ Brain Vault is a link management and storage system designed for individuals and
 
 - **Frontend:** React, TypeScript, Tailwind CSS
 - **Backend:** Node.js, Express.js, MongoDB
-- **Deployment:** Vercel (frontend), Render (backend)
+- **Deployment:** Netlify (frontend), Render (backend)
 
 ---
 

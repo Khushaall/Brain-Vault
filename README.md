@@ -11,7 +11,6 @@ Brain Vault is a link management and storage system designed for individuals and
 - 📌 Save and categorize useful links
 - 🗂️ Organize by service, category, or project
 - 🔎 Filter/search for quick access
-- 👥 Role-based dashboard (Admin/Team)
 - 📱 Fully responsive UI
 
 ---

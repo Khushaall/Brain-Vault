@@ -65,12 +65,12 @@ app.post("/api/v1/signup", async (req, res) => {
     const result = format.safeParse(req.body);
 
     if (!result.success) {
-    const errorMsg = result.error.errors[0]?.message || "Invalid input";
-    res.status(411).json({
-        message: errorMsg
-    });
-    return;
-}
+        const errorMsg = result.error.errors[0]?.message || "Invalid input";
+        res.status(411).json({
+            message: errorMsg
+        });
+        return;
+    }
 
     const chck = await UserModel.findOne({ username });
 
@@ -131,8 +131,9 @@ app.post("/api/v1/signin", async (req, res) => {
 
         res.cookie("token", token, {
             httpOnly: true,
+            secure: true,          // must be true for HTTPS
+            sameSite: "none",      // required for cross-site cookies
             maxAge: 24 * 60 * 60 * 1000,
-            sameSite: "lax",
             path: "/"
         });
 

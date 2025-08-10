@@ -61,7 +61,7 @@ export default function ContentModal({ onClose, Open, refresh }: ModalProps) {
 
         }
         catch (err) {
-            alert("Error Creating ");
+            alert("Error Creating " + err.response?.data?.message || err.message || "Unknown error");
             console.log(err);
         }
 

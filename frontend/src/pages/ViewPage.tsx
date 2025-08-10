@@ -42,7 +42,7 @@ export default function ViewPage() {
     }
 
     fetchData();
-  }, []);
+  }, [link]);
 
   function handleSubmit() {
     navigate("/")

@@ -51,7 +51,7 @@ function Dashboard({ setLoggedIn }) {
       });
       if (res.status === 200) refresh();
     } catch (err) {
-      alert("Error deleting content.");
+      alert("Error deleting content." + err.response?.data?.message || err.message || "Unknown error");
     }
   }
 

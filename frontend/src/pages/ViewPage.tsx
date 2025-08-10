@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import SkeletonCard from "./SkeletonHolder";
-import UseShow from "../hooks/UseShow";
-import UseContent from "../hooks/UseContent";
-import Card from "./Card";
-import { Button } from "./Button";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
+import { Button } from "../components/Button";
+import SkeletonCard from "../components/SkeletonHolder";
+import Card from "../components/Card";
 
 type ContentItem = {
   title: string;
@@ -38,7 +37,7 @@ export default function ViewPage() {
         setLoading(false);
 
       } catch (err) {
-        alert("No such Page");
+        alert("No such Page" + err);
       }
     }
 

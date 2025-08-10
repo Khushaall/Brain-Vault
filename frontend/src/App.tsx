@@ -1,11 +1,11 @@
 import Dashboard from "./pages/Dashboard"
 import './App.css'
 import { BrowserRouter , Routes , Route, Navigate } from "react-router-dom"
-import LoginPage from "./components/LoginPage"
+import LoginPage from "./pages/LoginPage"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { BACKEND_URL } from "./config"
-import ViewPage from "./components/ViewPage"
+import ViewPage from "./pages/ViewPage"
 
 
 
@@ -16,7 +16,7 @@ function App() {
 
   async function Verify(){
     try
-    {const res = await axios.get(`${BACKEND_URL}/verify`,{
+    {const res = await axios.get(`${BACKEND_URL}/api/v1/verify`,{
       withCredentials:true
     });
   

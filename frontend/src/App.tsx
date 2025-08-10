@@ -16,7 +16,7 @@ function App() {
 
   async function Verify(){
     try
-    {const res = await axios.get(`${BACKEND_URL}/api/v1/verify`,{
+    {const res = await axios.get(`${BACKEND_URL}/verify`,{
       withCredentials:true
     });
   

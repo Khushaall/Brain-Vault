@@ -13,10 +13,23 @@ import cors from "cors"
 dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
+
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://your-netlify-site.netlify.app" // replace with your deployed frontend URL
+];
+
 app.use(cors({
-    origin: "https://getbrainvault.netlify.app/",
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     credentials: true
 }));
+
 
 app.get("/", (req, res) => {
     res.send("Hi WOrking");
